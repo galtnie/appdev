@@ -7,10 +7,12 @@ import Portfolio from "../routes/Portfolio";
 import Company from "../routes/Company";
 import Blog from "../routes/Blog";
 import Contacts from "../routes/Contacts";
+import UpperBar from "./UpperBar";
 
 function App() {
   return (
     <Switch>
+      <Route path='/' component={UpperBar} />
       <Route path="/" exact component={Home} />
       <Route path="/services" exact component={Services} />
       <Route path="/technology" exact component={Technologies} />
