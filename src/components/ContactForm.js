@@ -44,10 +44,10 @@ class ContactForm extends Component {
               label="Message or question"
               multiline
               margin="normal"
-              rows="4"
+              rows="6"
             />
           </ContactFormForm>
-          <ContactFormButton variant="outlined" color="primary">
+          <ContactFormButton variant="outlined" color="primary" type='submit'>
             <span>Send us a message</span>
           </ContactFormButton>
         </ContactFormWrapper>

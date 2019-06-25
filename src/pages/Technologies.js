@@ -1,6 +1,8 @@
 import React from "react";
 import FakeText from "../components/FakeText";
+import TechnologiesUsed from "../components/TechnologiesUsed";
 import {MainPageDiv, FirstPageContainer } from "../styles";
+
 
 class Technologies extends React.Component {
   render() {
@@ -10,6 +12,7 @@ class Technologies extends React.Component {
           Technologies
           <FakeText />
         </FirstPageContainer>
+        <TechnologiesUsed />
         FOOTER
       </MainPageDiv>
     );

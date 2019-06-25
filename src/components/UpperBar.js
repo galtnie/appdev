@@ -16,7 +16,7 @@ export default function ButtonAppBar() {
       <WidthContainer>
         <UpperBarToolbar>
           <span style={{ flexGrow: '2' }}>
-            <StyledLink main exact to="/">
+            <StyledLink main='true' exact to="/">
               AppDev
             </StyledLink>
           </span>

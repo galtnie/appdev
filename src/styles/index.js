@@ -143,32 +143,77 @@ export const ContactFormForm = styled.form`
 `;
 
 export const ContactFormControl = styled(FormControl)`
-         min-width: 40% !important;
-         margin-top: 1rem !important;
-       `;
+  min-width: 40% !important;
+  margin-top: 1rem !important;
+`;
 
 export const ContactFormTextField = styled(TextField)`
-         min-width: 90% !important;
-         margin-top: 1rem !important;
-       `;
+  min-width: 90% !important;
+  margin-top: 1rem !important;
+`;
 
 export const ContactFormButton = styled(Button)`
-         margin: 2rem !important;
-         color: white !important;
-         border-color: 1px solid transparent !important;
-         border-radius: 0.5rem !important;
-         font-weight: bold !important;
-         background-image: linear-gradient(
-           to left top,
-           #051937,
-           #002c60,
-           #003f8c,
-           #0053bb,
-           #1267eb
-         );
-         &:hover {
-           background-image: none;
-           color: #3f51b5 !important;
-           border: 1px solid rgba(63, 81, 181, 0.5) !important;
-         }
+  margin: 2rem !important;
+  color: white !important;
+  border-color: 1px solid transparent !important;
+  border-radius: 0.5rem !important;
+  font-weight: bold !important;
+  background-image: linear-gradient(
+    to left top,
+    #051937,
+    #002c60,
+    #003f8c,
+    #0053bb,
+    #1267eb
+  );
+  &:hover {
+    background-image: none;
+    color: #3f51b5 !important;
+    border: 1px solid rgba(63, 81, 181, 0.5) !important;
+  }
+`;
+
+export const TechsUsedContainer = styled.div`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const TechsUsedParagraph = styled.p`
+  font-color: grey;
+`;
+
+export const TechsUsedList = styled.ul`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+`;
+
+export const TechsUsedListItem = styled.li`
+  width: 15rem;
+  height: 11rem;
+  list-style: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  box-shadow: 0 2rem 2rem 0 rgba(0, 0, 0, 0.05),
+    0 1rem 1.5rem 0 rgba(0, 0, 0, 0.05);
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const TechsUsedImageContainer = styled.div`
+         height: 7rem;
+         width: 15rem;
+         background-image: ${({ logo }) => `url(${logo})`};
+         background-repeat: no-repeat;
+         background-size: 75% 100%;
+         background-position: center;
        `;
