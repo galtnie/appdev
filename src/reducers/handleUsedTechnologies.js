@@ -1,37 +1,34 @@
+import angular from "../images/angular.png";
+import vue from "../images/vue.png";
+import react from "../images/react.png";
+import next from "../images/next.png";
+import node from "../images/node.png";
+import nuxt from "../images/nuxt.png";
+
 const initialState = [
   {
     name: "Angular",
-    logo: "https://angular.io/assets/images/logos/angular/angular.png",
-    // logo: '../images/angular.png'
+    logo: angular,
   },
   {
     name: "Vue",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Vue.png",
-    // logo: '../images/vue.png'
+    logo: vue,
   },
   {
     name: "React",
-    logo:
-      "https://cdn4.iconfinder.com/data/icons/logos-3/600/React.js_logo-512.png",
-    // logo: '../images/react.png'
+    logo: react,
   },
   {
     name: "Next.JS",
-    logo:
-      "https://seeklogo.com/images/N/next-js-logo-7929BCD36F-seeklogo.com.png",
-    // logo: '../images/next.png'
+    logo: next,
   },
   {
     name: "Node.JS",
-    logo:
-      "http://pluspng.com/img-png/nodejs-logo-png-nice-images-collection-node-js-desktop-wallpapers-370.png",
-    // logo: '../images/node.png'
+    logo: node,
   },
   {
     name: "Nuxt",
-    logo:
-      "https://cdn.cosmicjs.com/8a9bd6e0-471e-11e8-9273-6f3edf3e559e-nuxt.png",
-    // logo: '../images/nuxt.png'
+    logo: nuxt,
   },
 ];
 
