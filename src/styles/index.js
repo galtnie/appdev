@@ -214,6 +214,6 @@ export const TechsUsedImageContainer = styled.div`
          width: 15rem;
          background-image: ${({ logo }) => `url(${logo})`};
          background-repeat: no-repeat;
-         background-size: 75% 100%;
+         background-size: 65% 100%;
          background-position: center;
        `;
