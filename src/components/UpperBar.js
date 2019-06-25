@@ -3,7 +3,7 @@ import {
   UpperBarRoot,
   UpperBarWrapper,
   UpperBarToolbar,
-  UpperBarTypography,
+  WidthContainer,
   UpperBarList,
   UpperBarItem,
   StyledLink,
@@ -12,13 +12,14 @@ import {
 export default function ButtonAppBar() {
   return (
     <UpperBarRoot>
-      <UpperBarWrapper position="static">
+      <UpperBarWrapper>
+      <WidthContainer>
         <UpperBarToolbar>
-          <UpperBarTypography variant="h6">
+          <span style={{ flexGrow: '2' }}>
             <StyledLink main exact to="/">
-              AppDev{" "}
+              AppDev
             </StyledLink>
-          </UpperBarTypography>
+          </span>
           <UpperBarList>
             <UpperBarItem>
               <StyledLink to="/services" activeClassName="selectedLink">
@@ -52,7 +53,9 @@ export default function ButtonAppBar() {
             </UpperBarItem>
           </UpperBarList>
         </UpperBarToolbar>
+        </WidthContainer>
       </UpperBarWrapper>
     </UpperBarRoot>
   );
 }
+

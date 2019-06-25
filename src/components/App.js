@@ -1,18 +1,19 @@
-import React from 'react';
-import { Switch, Route } from "react-router-dom";
-import Home from "../routes/Home";
-import Services from "../routes/Services";
-import Technologies from "../routes/Technologies";
-import Portfolio from "../routes/Portfolio";
-import Company from "../routes/Company";
-import Blog from "../routes/Blog";
-import Contacts from "../routes/Contacts";
+import React from "react";
+import { Route } from "react-router-dom";
+import Home from "../pages/Home";
+import Services from "../pages/Services";
+import Technologies from "../pages/Technologies";
+import Portfolio from "../pages/Portfolio";
+import Company from "../pages/Company";
+import Blog from "../pages/Blog";
+import Contacts from "../pages/Contacts";
 import UpperBar from "./UpperBar";
+import { StyledMain } from "../styles";
 
 function App() {
   return (
-    <Switch>
-      <Route path='/' component={UpperBar} />
+    <StyledMain>
+      <Route path="/" component={UpperBar} />
       <Route path="/" exact component={Home} />
       <Route path="/services" exact component={Services} />
       <Route path="/technology" exact component={Technologies} />
@@ -20,8 +21,10 @@ function App() {
       <Route path="/company" exact component={Company} />
       <Route path="/blog" exact component={Blog} />
       <Route path="/contacts" exact component={Contacts} />
-    </Switch>
+    </StyledMain>
   );
 }
 
 export default App;
+
+//
