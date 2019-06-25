@@ -2,22 +2,25 @@ import styled from "styled-components";
 import Toolbar from "@material-ui/core/Toolbar";
 import AppBar from "@material-ui/core/AppBar";
 import { NavLink } from "react-router-dom";
+import FormControl from "@material-ui/core/FormControl";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
 export const StyledMain = styled.main`
-         max-width: 100vw;
-         padding: 0;
-         margin: 0;
-       `;
+  max-width: 100vw;
+  padding: 0;
+  margin: 0;
+`;
 
 export const MainPageDiv = styled.div`
-         display: flex;
-         flex-direction: column;
-         align-items: center;
-         justify-content: flex-start;
-         max-width: 100vw;
-         padding: 0;
-         margin: 0;
-       `;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  max-width: 100vw;
+  padding: 0;
+  margin: 0;
+`;
 
 export const WidthContainer = styled.div`
   width: 56.25rem;
@@ -70,15 +73,15 @@ export const UpperBarWrapper = styled(AppBar)`
 `;
 
 export const UpperBarToolbar = styled(Toolbar)`
-         display: flex;
-         flex-direction: row;
-         align-items: center;
-         justify-content: center;
-         color: #fff;
-         padding-left: 0 !important;
-         padding-right: 0 !important;
-         margin: 0;
-       `;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin: 0;
+`;
 
 export const UpperBarList = styled.ul`
   display: flex;
@@ -120,3 +123,52 @@ export const FirstPageContainer = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+export const ContactFormWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+`;
+
+export const ContactFormForm = styled.form`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+`;
+
+export const ContactFormControl = styled(FormControl)`
+         min-width: 40% !important;
+         margin-top: 1rem !important;
+       `;
+
+export const ContactFormTextField = styled(TextField)`
+         min-width: 90% !important;
+         margin-top: 1rem !important;
+       `;
+
+export const ContactFormButton = styled(Button)`
+         margin: 2rem !important;
+         color: white !important;
+         border-color: 1px solid transparent !important;
+         border-radius: 0.5rem !important;
+         font-weight: bold !important;
+         background-image: linear-gradient(
+           to left top,
+           #051937,
+           #002c60,
+           #003f8c,
+           #0053bb,
+           #1267eb
+         );
+         &:hover {
+           background-image: none;
+           color: #3f51b5 !important;
+           border: 1px solid rgba(63, 81, 181, 0.5) !important;
+         }
+       `;

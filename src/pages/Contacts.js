@@ -1,6 +1,8 @@
 import React from "react";
 import FakeText from "../components/FakeText";
+import ContactForm from "../components/ContactForm";
 import { MainPageDiv, FirstPageContainer } from "../styles";
+
 
 class Contacts extends React.Component {
   render() {
@@ -10,6 +12,7 @@ class Contacts extends React.Component {
           Contacts
           <FakeText />
         </FirstPageContainer>
+        <ContactForm />
         FOOTER
       </MainPageDiv>
     );
