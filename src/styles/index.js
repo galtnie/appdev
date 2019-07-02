@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import Toolbar from "@material-ui/core/Toolbar";
-import AppBar from "@material-ui/core/AppBar";
 import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import FormControl from "@material-ui/core/FormControl";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import React from "react";
 
 export const StyledMain = styled.main`
   max-width: 100vw;
@@ -29,9 +29,10 @@ export const WidthContainer = styled.div`
   margin: 0;
 `;
 
+//  UpperBar component & UpperBarBurgerMenu Component
+
 export const StyledLink = styled(NavLink)`
   text-decoration: none;
-  fontweight: bold;
   color: white;
   padding-bottom: 0.1rem;
 
@@ -42,45 +43,9 @@ export const StyledLink = styled(NavLink)`
   &:active {
     text-decoration: none;
   }
-
   &.selectedLink {
     border-bottom: 0.1em solid white;
   }
-`;
-
-export const UpperBarRoot = styled.div`
-  position: fixed;
-  width: 100vw;
-  min-width: 100vw;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  @media only screen and (max-width: 480px) {
-    top: 0;
-    z-index: 1;
-    width: 100%;
-  }
-`;
-
-export const UpperBarWrapper = styled(AppBar)`
-  background-color: rgba(205, 204, 204, 0) !important;
-  box-shadow: none !important;
-  right: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-export const UpperBarToolbar = styled(Toolbar)`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-  margin: 0;
 `;
 
 export const UpperBarList = styled.ul`
@@ -98,9 +63,133 @@ export const UpperBarList = styled.ul`
 
 export const UpperBarItem = styled.li`
   list-style: none;
-  margin-right: ${({ last }) => (last ? 0 : "2rem")};
+  margin-right: ${({ last }) => (last ? 0 : "1rem")};
   cursor: pointer;
 `;
+
+export const BurgerMainContainer = styled.div`
+  opacity: 0.9;
+  display: flex;
+  alignitems: center;
+  background: inherit;
+  color: inherit;
+`;
+
+export const BurgerMenuItemContainer = styled.div`
+  opacity: 0;
+  animation: 1s appear forwards;
+  animation-delay: ${({ delay }) => delay};
+`;
+
+export const BurgerMenuItem = styled.div`
+  font-family: inherit;
+  font-size: 1.2rem;
+
+  color: inherit;
+  transition: color 0.2s ease-in-out;
+  animation: 0.5s slideIn forwards;
+  animation-delay: ${({ delay }) => delay};
+  &:hover {
+    color: #f2b880;
+  }
+`;
+
+export const BurgerMenuList = styled.div`
+  height: 91vh;
+  width: 100%;
+  background: rgba(103, 58, 183, 0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: Montserrat, Helvetica, sans-serif;
+  box-sizing: border-box;
+  padding-bottom: 5em;
+`;
+// height - if i use 'Slide' component, this width: "calc(100vh - 100%)" is more accurate. but collapse considers 100% height of this container, not of the parent one
+// background: rgba(103, 58, 183, 0.7);  - maybe make it a secondary color. need to mull over it later.
+
+export const BurgerMenuContainer = styled.div`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  height: ${({ opened }) => (opened ? "100%" : 0)};
+  width: 100vw;
+  color: #fafafa;
+  transition: height 0.3s ease;
+`;
+
+export const BurgerMenuButtonContainer = styled.div`
+  height: 32px;
+  width: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 15;
+`;
+
+export const BurgerLine = styled.div`
+  height: 2px;
+  width: 20px;
+  background: ${({ color }) => color};
+  transition: "all 0.3s ease";
+`;
+
+export const BurgerLineTop = ({ open, color }) => {
+  return (
+    <BurgerLine
+      color={color}
+      style={{
+        transform: open ? "rotate(45deg)" : "none",
+        transformOrigin: "top left",
+        marginBottom: "5px",
+      }}
+    />
+  );
+};
+
+export const BurgerLineMiddle = ({ open, color }) => {
+  return (
+    <BurgerLine
+      color={color}
+      style={{
+        opacity: open ? 0 : 1,
+        transform: open ? "translateX(-16px)" : "none",
+        transition: "all 0.3s ease",
+      }}
+    />
+  );
+};
+
+export const BurgerLineBottom = ({ open, color }) => {
+  return (
+    <BurgerLine
+      color={color}
+      style={{
+        transform: open ? "translateX(-1px) rotate(-45deg)" : "none",
+        transformOrigin: "top left",
+        marginTop: "5px",
+        transition: "all 0.3s ease",
+      }}
+    />
+  );
+};
+
+export const BurgerStyledLink = styled(Link)`
+  text-decoration: none;
+  color: white;
+`;
+
+// something else
+// something else
+// something else
+// something else
+// something else
+// something else
+// something else
 
 export const FirstPageContainer = styled.div`
   background-image: linear-gradient(
@@ -115,8 +204,8 @@ export const FirstPageContainer = styled.div`
   max-height: 100vh;
   min-height: 100vh;
   width: 100vw;
-  max-width: 100vw;
-  min-width: 100vw;
+  max-width: 100%;
+  min-width: 100%;
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -210,10 +299,10 @@ export const TechsUsedListItem = styled.li`
 `;
 
 export const TechsUsedImageContainer = styled.div`
-         height: 7rem;
-         width: 15rem;
-         background-image: ${({ logo }) => `url(${logo})`};
-         background-repeat: no-repeat;
-         background-size: 65% 100%;
-         background-position: center;
-       `;
+  height: 7rem;
+  width: 15rem;
+  background-image: ${({ logo }) => `url(${logo})`};
+  background-repeat: no-repeat;
+  background-size: 65% 100%;
+  background-position: center;
+`;

@@ -6,11 +6,38 @@ import store from "./store";
 import App from "./components/App";
 import { BrowserRouter } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
+import {
+  MuiThemeProvider,
+  createMuiTheme,
+  CssBaseline,
+} from "@material-ui/core";
+import { indigo, blue } from "@material-ui/core/colors";
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      // main: deepPurple[500],
+      main: indigo[500],
+    },
+    secondary: {
+      // main: indigo[500],
+      main: blue[500],
+    },
+  },
+  "@global": {
+    "html, body, #root": {
+      width: "100%",
+    },
+  },
+});
 
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter basename={process.env.PUBLIC_URL}>
-      <App />
+      <CssBaseline />
+      <MuiThemeProvider theme={theme}>
+        <App />
+      </MuiThemeProvider>
     </BrowserRouter>
   </Provider>,
   document.getElementById("root")

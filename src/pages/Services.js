@@ -10,7 +10,6 @@ class Services extends React.Component {
           Services page
           <FakeText />
         </FirstPageContainer>
-        FOOTER
       </MainPageDiv>
     );
   }

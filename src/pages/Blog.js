@@ -10,7 +10,6 @@ class Blog extends React.Component {
           Blog page
           <FakeText />
         </FirstPageContainer>
-        FOOTER
       </MainPageDiv>
     );
   }

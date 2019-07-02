@@ -16,7 +16,7 @@ function App() {
       <Route path="/" component={UpperBar} />
       <Route path="/" exact component={Home} />
       <Route path="/services" exact component={Services} />
-      <Route path="/technology" exact component={Technologies} />
+      <Route path="/technologies" exact component={Technologies} />
       <Route path="/portfolio" exact component={Portfolio} />
       <Route path="/company" exact component={Company} />
       <Route path="/blog" exact component={Blog} />

@@ -4,15 +4,14 @@ import { MainPageDiv, FirstPageContainer } from "../styles";
 
 class Portfolio extends React.Component {
   render() {
-        return (
-          <MainPageDiv>
-            <FirstPageContainer>
-              Portfolio page
-              <FakeText />
-            </FirstPageContainer>
-            FOOTER
-          </MainPageDiv>
-        );
+    return (
+      <MainPageDiv>
+        <FirstPageContainer>
+          Portfolio page
+          <FakeText />
+        </FirstPageContainer>
+      </MainPageDiv>
+    );
   }
 }
 

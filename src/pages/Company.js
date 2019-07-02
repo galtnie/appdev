@@ -10,7 +10,6 @@ class Company extends React.Component {
           Company page
           <FakeText />
         </FirstPageContainer>
-        FOOTER
       </MainPageDiv>
     );
   }

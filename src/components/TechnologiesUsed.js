@@ -10,7 +10,6 @@ import {
 } from "../styles";
 
 const TechnologiesUsed = ({ usedTechnologies }) => {
-  console.log(usedTechnologies);
   return (
     <WidthContainer>
       <TechsUsedContainer>
@@ -23,15 +22,13 @@ const TechnologiesUsed = ({ usedTechnologies }) => {
           {usedTechnologies
             ? usedTechnologies.map(technology => {
                 return (
-                  <TechsUsedListItem>
+                  <TechsUsedListItem key={technology.name}>
                     <TechsUsedImageContainer logo={technology.logo} />
                     <p>{` ${technology.name} Development`}</p>
                   </TechsUsedListItem>
                 );
               })
             : null}
-
-
         </TechsUsedList>
       </TechsUsedContainer>
     </WidthContainer>
