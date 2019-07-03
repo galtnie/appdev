@@ -22,13 +22,6 @@ export const MainPageDiv = styled.div`
   margin: 0;
 `;
 
-export const WidthContainer = styled.div`
-  width: 56.25rem;
-  max-width: 56.25rem;
-  padding: 0;
-  margin: 0;
-`;
-
 //  UpperBar component & UpperBarBurgerMenu Component
 
 export const StyledLink = styled(NavLink)`
@@ -59,12 +52,17 @@ export const UpperBarList = styled.ul`
   animation: none;
   visibility: visible;
   fontweight: bold;
+  margin: 0;
+  padding: 0;
 `;
 
 export const UpperBarItem = styled.li`
   list-style: none;
   margin-right: ${({ last }) => (last ? 0 : "1rem")};
   cursor: pointer;
+  @media (max-width: 650px) {
+    margin-right: ${({ last }) => (last ? 0 : "0.5rem")};
+  }
 `;
 
 export const BurgerButtonContainer = styled.div`
@@ -215,14 +213,14 @@ export const FirstColorfulContainer = styled.div`
   justify-content: center;
 `;
 
-export const ContactFormWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 5rem;
-  margin-bottom: 5rem;
-`;
+// export const ContactFormWrapper = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   margin-top: 5rem;
+//   margin-bottom: 5rem;
+// `;
 
 export const ContactFormForm = styled.form`
   width: 100%;
@@ -234,13 +232,14 @@ export const ContactFormForm = styled.form`
 `;
 
 export const ContactFormControl = styled(FormControl)`
-  min-width: 40% !important;
   margin-top: 1rem !important;
+  width: 100%;
 `;
+// min-width: 40% !important;
 
 export const ContactFormTextField = styled(TextField)`
-  min-width: 90% !important;
   margin-top: 1rem !important;
+  width: 100%;
 `;
 
 export const ContactFormButton = styled(Button)`
@@ -271,6 +270,7 @@ export const TechsUsedContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-bottom: 3rem;
 `;
 
 export const TechsUsedParagraph = styled.p`
@@ -283,6 +283,8 @@ export const TechsUsedList = styled.ul`
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
 `;
 
 export const TechsUsedListItem = styled.li`
@@ -305,6 +307,6 @@ export const TechsUsedImageContainer = styled.div`
   width: 15rem;
   background-image: ${({ logo }) => `url(${logo})`};
   background-repeat: no-repeat;
-  background-size: 65% 100%;
+  background-size: auto 100%;
   background-position: center;
 `;

@@ -1,24 +1,50 @@
 import React, { Component } from "react";
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
 import {
-  WidthContainer,
-  ContactFormWrapper,
+  Input,
+  InputLabel,
+  Typography,
+  Grid,
+  withStyles,
+  Hidden,
+} from "@material-ui/core";
+import {
   ContactFormForm,
   ContactFormControl,
   ContactFormTextField,
   ContactFormButton,
 } from "../styles";
 
-
+const classes = theme => ({
+  nameInput: {
+    marginLeft: theme.spacing(0),
+  },
+  emailInput: {
+    marginRight: theme.spacing(0),
+  },
+});
 
 class ContactForm extends Component {
   render() {
+    const { classes } = this.props;
     return (
-      <WidthContainer>
-        <ContactFormWrapper>
-          <h2>GOT PROJECT IN MIND?</h2>
-          <ContactFormForm>
+      <Grid
+        container
+        direction="column"
+        // justify="space-around"
+        alignItems="center"
+      >
+        <Grid item lg={8} md={9} xs={10}>
+          <Typography variant="h4" align="center" style={{ marginTop: "1rem" }}>
+            GOT PROJECT IN MIND?
+          </Typography>
+        </Grid>
+
+        <ContactFormForm>
+          <Hidden xsDown lgUp>
+            <Grid item md={2} sm={1} />
+          </Hidden>
+
+          <Grid item lg={3} md={3} sm={4} xs={10} className={classes.nameInput}>
             <ContactFormControl>
               <InputLabel htmlFor="component-simple">Your Name</InputLabel>
               <Input
@@ -29,6 +55,20 @@ class ContactForm extends Component {
                 // onChange={handleChange}
               />
             </ContactFormControl>
+          </Grid>
+
+          <Hidden xsDown lgUp>
+            <Grid item md={2} sm={2} />
+          </Hidden>
+
+          <Grid
+            item
+            lg={3}
+            md={3}
+            sm={4}
+            xs={10}
+            className={classes.emailInput}
+          >
             <ContactFormControl>
               <InputLabel htmlFor="component-simple">Your Email</InputLabel>
               <Input
@@ -39,6 +79,12 @@ class ContactForm extends Component {
                 // onChange={handleChange}
               />
             </ContactFormControl>
+          </Grid>
+          <Hidden xsDown lgUp>
+            <Grid item md={2} sm={1} />
+          </Hidden>
+
+          <Grid item lg={8} md={8} xs={10}>
             <ContactFormTextField
               id="standard-multiline-static"
               label="Message or question"
@@ -46,14 +92,15 @@ class ContactForm extends Component {
               margin="normal"
               rows="6"
             />
-          </ContactFormForm>
-          <ContactFormButton variant="outlined" color="primary" type='submit'>
-            <span>Send us a message</span>
-          </ContactFormButton>
-        </ContactFormWrapper>
-      </WidthContainer>
+          </Grid>
+        </ContactFormForm>
+
+        <ContactFormButton variant="outlined" color="primary" type="submit">
+          <span>Send us a message</span>
+        </ContactFormButton>
+      </Grid>
     );
   }
 }
 
-export default ContactForm;
+export default withStyles(classes)(ContactForm);

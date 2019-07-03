@@ -10,24 +10,25 @@ import {
   BurgerLineBottom,
 } from "../styles";
 
-const BurgerButton = ({ toggleBurgerMenu }) => {
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  return (
-    <div>
-      <BurgerButtonContainer>
-        <BurgerButtonLines
-          open={menuOpen}
-          onClick={() => {
-            setMenuOpen(prevState => !prevState);
-            toggleBurgerMenu(!menuOpen);
-          }}
-          color="white"
-        />
-      </BurgerButtonContainer>
-    </div>
-  );
-};
+class BurgerButton extends React.Component {
+  render() {
+    return (
+      <div>
+        <BurgerButtonContainer>
+          <BurgerButtonLines
+            open={
+              this.props.isBurgerMenuOpen ? this.props.isBurgerMenuOpen : false
+            }
+            onClick={() => {
+              this.props.toggleBurgerMenu(!this.props.isBurgerMenuOpen);
+            }}
+            color="white"
+          />
+        </BurgerButtonContainer>
+      </div>
+    );
+  }
+}
 
 const BurgerButtonLines = ({ open, color, onClick }) => {
   const [opened, setOpened] = useState(open ? open : false);
@@ -57,16 +58,10 @@ const BurgerButtonLines = ({ open, color, onClick }) => {
 };
 
 const mapStateToProps = state => {
-  return {
-    appBarOptions: state.appBarOptions,
-  };
-};
-
-const mapDispatchToProps = {
-  toggleBurgerMenu,
+  return { isBurgerMenuOpen: state.isBurgerMenuOpen };
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  { toggleBurgerMenu }
 )(BurgerButton);

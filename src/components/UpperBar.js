@@ -11,7 +11,7 @@ import {
 import { connect } from "react-redux";
 import { UpperBarList, UpperBarItem, StyledLink } from "../styles";
 import BurgerButton from "./UpperBarBurgerButton";
-import Menu from "./UpperBarBurgerMenu";
+import BurgerMenu from "./UpperBarBurgerMenu";
 
 const classes = {
   root: {
@@ -27,7 +27,7 @@ const classes = {
   },
 };
 
-const UpperBar = ({ appBarOptions, classes, width, isBurgerMenuOpen }) => {
+const UpperBar = ({ appBarOptions, classes, width }) => {
   const [backgroundColor, setBackgroundColor] = useState("transparent");
 
   const listenScrollEvent = e => {
@@ -58,7 +58,7 @@ const UpperBar = ({ appBarOptions, classes, width, isBurgerMenuOpen }) => {
       }}
     >
       <Grid container direction="row" justify="center" alignItems="center">
-        <Grid item lg={8} md={9} xs={10}>
+        <Grid item md={8} xs={10}>
           <Toolbar className={classes.bar}>
             <Typography variant="h6" className={classes.title}>
               <StyledLink main="true" exact to="/">
@@ -99,7 +99,7 @@ const UpperBar = ({ appBarOptions, classes, width, isBurgerMenuOpen }) => {
             )}
           </Toolbar>
           <Hidden smUp>
-            <Menu />
+            <BurgerMenu />
           </Hidden>
         </Grid>
       </Grid>
@@ -110,7 +110,6 @@ const UpperBar = ({ appBarOptions, classes, width, isBurgerMenuOpen }) => {
 const mapStateToProps = state => {
   return {
     appBarOptions: state.appBarOptions,
-    isBurgerMenuOpen: state.isBurgerMenuOpen,
   };
 };
 

@@ -25,7 +25,7 @@ const MenuItem = ({ delay, children, closeBurgerMenu }) => {
   );
 };
 
-class Menu extends React.Component {
+class BurgerMenu extends React.Component {
   composeMenuItems = () => {
     const menuItems = this.props.appBarOptions.map((value, index) => {
       const link = value !== "Contact us" ? value.toLowerCase() : "contacts";
@@ -68,7 +68,7 @@ class Menu extends React.Component {
   }
 }
 
-Menu.propTypes = {
+BurgerMenu.propTypes = {
   isBurgerMenuOpen: PropTypes.bool,
 };
 
@@ -85,4 +85,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Menu);
+)(BurgerMenu);

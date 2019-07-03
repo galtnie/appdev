@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 import handleUsedTechnologies from "./handleUsedTechnologies";
-import handleAppBarOptions from "./handleAppBarOptions";
+import handleNavigationOptions from "./handleNavigationOptions";
 import toggleBurgerMenu from "./toggleBurgerMenu";
 
 export default combineReducers({
   usedTechnologies: handleUsedTechnologies,
-  appBarOptions: handleAppBarOptions,
+  appBarOptions: handleNavigationOptions,
   isBurgerMenuOpen: toggleBurgerMenu,
 });
