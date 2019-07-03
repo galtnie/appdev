@@ -1,64 +1,22 @@
-import "../css/UpperBar.css";
-import React, { useState, useEffect } from "react";
-import { Collapse } from "@material-ui/core";
+import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Collapse } from "@material-ui/core";
+import { toggleBurgerMenu } from "../actions";
 import {
-  BurgerMainContainer,
   BurgerMenuItemContainer,
   BurgerMenuItem,
   BurgerMenuList,
   BurgerMenuContainer,
-  BurgerMenuButtonContainer,
-  BurgerLineTop,
-  BurgerLineMiddle,
-  BurgerLineBottom,
   BurgerStyledLink,
 } from "../styles";
+import PropTypes from "prop-types";
 
-const Burger = ({ appBarOptions }) => {
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const menuItems = appBarOptions.map((value, index) => {
-    const link = value !== "Contact us" ? value.toLowerCase() : "contacts";
-
-    return (
-      <BurgerStyledLink to={`/${link}`} key={index}>
-        <MenuItem
-          key={index}
-          delay={`${index * 0.1 + 0.32}s`}
-          onClick={() => {
-            setMenuOpen(false);
-          }}
-        >
-          {value}
-        </MenuItem>
-      </BurgerStyledLink>
-    );
-  });
-
-  return (
-    <div>
-      <BurgerMainContainer>
-        <MenuButton
-          open={menuOpen}
-          onClick={() => {
-            setMenuOpen(prevState => !prevState);
-          }}
-          color="white"
-        />
-      </BurgerMainContainer>
-      <Menu open={menuOpen}>{menuItems}</Menu>
-    </div>
-  );
-};
-
-const MenuItem = ({ delay, children, onClick }) => {
+const MenuItem = ({ delay, children, closeBurgerMenu }) => {
   return (
     <BurgerMenuItemContainer delay={delay}>
       <BurgerMenuItem
         onClick={e => {
-          onClick(); // i will have to remake to link
+          closeBurgerMenu();
         }}
       >
         {children}
@@ -67,63 +25,64 @@ const MenuItem = ({ delay, children, onClick }) => {
   );
 };
 
-const Menu = ({ open, children }) => {
-  const [opened, setOpened] = useState(open ? open : false);
+class Menu extends React.Component {
+  composeMenuItems = () => {
+    const menuItems = this.props.appBarOptions.map((value, index) => {
+      const link = value !== "Contact us" ? value.toLowerCase() : "contacts";
 
-  useEffect(() => {
-    if (open !== opened) {
-      setOpened(open);
-    }
-  }, [open, opened]);
+      return (
+        <BurgerStyledLink to={`/${link}`} key={index}>
+          <MenuItem
+            key={index}
+            delay={`${index * 0.1 + 0.32}s`}
+            closeBurgerMenu={() => {
+              this.props.toggleBurgerMenu(false);
+            }}
+          >
+            {value}
+          </MenuItem>
+        </BurgerStyledLink>
+      );
+    });
+    return menuItems;
+  };
 
-  const renderSlide = () => {
+  renderSlide = () => {
     return (
       <Collapse
-        in={opened}
+        in={this.props.isBurgerMenuOpen}
         timeout={{ enter: 500, exit: 300 }}
         unmountOnExit={true}
       >
-        <BurgerMenuList>{children}</BurgerMenuList>
+        <BurgerMenuList>{this.composeMenuItems()}</BurgerMenuList>
       </Collapse>
     );
   };
 
-  return (
-    <BurgerMenuContainer opened={opened}>{renderSlide()}</BurgerMenuContainer>
-  );
-};
+  render() {
+    return (
+      <BurgerMenuContainer opened={this.props.isBurgerMenuOpen}>
+        {this.renderSlide()}
+      </BurgerMenuContainer>
+    );
+  }
+}
 
-const MenuButton = ({ open, color, onClick }) => {
-  const [opened, setOpened] = useState(open ? open : false);
-  const [hue] = useState(color ? color : "white");
-
-  useEffect(() => {
-    if (open !== opened) {
-      setOpened(open);
-    }
-  }, [open, opened]);
-
-  return (
-    <BurgerMenuButtonContainer
-      onClick={
-        onClick
-          ? onClick
-          : () => {
-              setOpened(!opened);
-            }
-      }
-    >
-      <BurgerLineTop color={hue} open={opened} />
-      <BurgerLineMiddle color={hue} open={opened} />
-      <BurgerLineBottom color={hue} open={opened} />
-    </BurgerMenuButtonContainer>
-  );
+Menu.propTypes = {
+  isBurgerMenuOpen: PropTypes.bool,
 };
 
 const mapStateToProps = state => {
   return {
     appBarOptions: state.appBarOptions,
+    isBurgerMenuOpen: state.isBurgerMenuOpen,
   };
 };
 
-export default connect(mapStateToProps)(Burger);
+const mapDispatchToProps = {
+  toggleBurgerMenu,
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Menu);

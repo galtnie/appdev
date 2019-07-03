@@ -10,7 +10,8 @@ import {
 } from "@material-ui/core/";
 import { connect } from "react-redux";
 import { UpperBarList, UpperBarItem, StyledLink } from "../styles";
-import Burger from "./UpperBarBurgerMenu";
+import BurgerButton from "./UpperBarBurgerButton";
+import Menu from "./UpperBarBurgerMenu";
 
 const classes = {
   root: {
@@ -18,12 +19,15 @@ const classes = {
     maxWidth: "100%",
     boxShadow: "none",
   },
+  bar: {
+    padding: 0,
+  },
   title: {
     flexGrow: 1,
   },
 };
 
-const UpperBar = ({ appBarOptions, classes, width }) => {
+const UpperBar = ({ appBarOptions, classes, width, isBurgerMenuOpen }) => {
   const [backgroundColor, setBackgroundColor] = useState("transparent");
 
   const listenScrollEvent = e => {
@@ -54,8 +58,8 @@ const UpperBar = ({ appBarOptions, classes, width }) => {
       }}
     >
       <Grid container direction="row" justify="center" alignItems="center">
-        <Grid item lg={8} md={9} xs={12}>
-          <Toolbar>
+        <Grid item lg={8} md={9} xs={10}>
+          <Toolbar className={classes.bar}>
             <Typography variant="h6" className={classes.title}>
               <StyledLink main="true" exact to="/">
                 AppDev
@@ -89,11 +93,14 @@ const UpperBar = ({ appBarOptions, classes, width }) => {
                   </UpperBarList>
                 </Hidden>
                 <Hidden smUp>
-                  <Burger />
+                  <BurgerButton />
                 </Hidden>
               </Fragment>
             )}
           </Toolbar>
+          <Hidden smUp>
+            <Menu />
+          </Hidden>
         </Grid>
       </Grid>
     </AppBar>
@@ -103,6 +110,7 @@ const UpperBar = ({ appBarOptions, classes, width }) => {
 const mapStateToProps = state => {
   return {
     appBarOptions: state.appBarOptions,
+    isBurgerMenuOpen: state.isBurgerMenuOpen,
   };
 };
 

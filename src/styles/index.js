@@ -67,7 +67,7 @@ export const UpperBarItem = styled.li`
   cursor: pointer;
 `;
 
-export const BurgerMainContainer = styled.div`
+export const BurgerButtonContainer = styled.div`
   opacity: 0.9;
   display: flex;
   alignitems: center;
@@ -96,7 +96,7 @@ export const BurgerMenuItem = styled.div`
 
 export const BurgerMenuList = styled.div`
   height: 91vh;
-  width: 100%;
+  width: 100vw;
   background: rgba(103, 58, 183, 0.7);
   display: flex;
   flex-direction: column;
@@ -113,13 +113,14 @@ export const BurgerMenuContainer = styled.div`
   position: absolute;
   top: 100%;
   left: 0;
+
   height: ${({ opened }) => (opened ? "100%" : 0)};
   width: 100vw;
   color: #fafafa;
   transition: height 0.3s ease;
 `;
 
-export const BurgerMenuButtonContainer = styled.div`
+export const BurgerButtonLinesWrapper = styled.div`
   height: 32px;
   width: 32px;
   display: flex;
@@ -191,7 +192,7 @@ export const BurgerStyledLink = styled(Link)`
 // something else
 // something else
 
-export const FirstPageContainer = styled.div`
+export const FirstColorfulContainer = styled.div`
   background-image: linear-gradient(
     to left top,
     #051937,
@@ -201,7 +202,8 @@ export const FirstPageContainer = styled.div`
     #1267eb
   );
   height: 100vh;
-  max-height: 100vh;
+  max-height: 200vh;
+  height: 100vh;
   min-height: 100vh;
   width: 100vw;
   max-width: 100%;

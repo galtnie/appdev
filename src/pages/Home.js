@@ -1,15 +1,25 @@
 import React from "react";
 import FakeText from "../components/FakeText";
-import { MainPageDiv, FirstPageContainer } from "../styles";
+import { MainPageDiv, FirstColorfulContainer } from "../styles";
+import { Grid } from "@material-ui/core/";
 
 class Home extends React.Component {
   render() {
     return (
       <MainPageDiv>
-        <FirstPageContainer>
-          Home page
-          <FakeText />
-        </FirstPageContainer>
+        <FirstColorfulContainer>
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+          >
+            <Grid item lg={8} md={9} xs={10}>
+              Home page
+              <FakeText />
+            </Grid>
+          </Grid>
+        </FirstColorfulContainer>
       </MainPageDiv>
     );
   }
