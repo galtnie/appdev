@@ -24,7 +24,4 @@ function App() {
     </StyledMain>
   );
 }
-
 export default App;
-
-//

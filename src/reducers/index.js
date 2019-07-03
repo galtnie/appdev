@@ -5,6 +5,6 @@ import toggleBurgerMenu from "./toggleBurgerMenu";
 
 export default combineReducers({
   usedTechnologies: handleUsedTechnologies,
-  appBarOptions: handleNavigationOptions,
+  navigationOptions: handleNavigationOptions,
   isBurgerMenuOpen: toggleBurgerMenu,
 });

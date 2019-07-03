@@ -27,8 +27,9 @@ const MenuItem = ({ delay, children, closeBurgerMenu }) => {
 
 class BurgerMenu extends React.Component {
   composeMenuItems = () => {
-    const menuItems = this.props.appBarOptions.map((value, index) => {
-      const link = value !== "Contact us" ? value.toLowerCase() : "contacts";
+    const menuItems = this.props.navigationOptions.map((listItem, index) => {
+      const option = typeof listItem === "string" ? listItem : listItem[0];
+      const link = option !== "Contact us" ? option.toLowerCase() : "contacts";
 
       return (
         <BurgerStyledLink to={`/${link}`} key={index}>
@@ -39,7 +40,7 @@ class BurgerMenu extends React.Component {
               this.props.toggleBurgerMenu(false);
             }}
           >
-            {value}
+            {option}
           </MenuItem>
         </BurgerStyledLink>
       );
@@ -74,7 +75,7 @@ BurgerMenu.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    appBarOptions: state.appBarOptions,
+    navigationOptions: state.navigationOptions,
     isBurgerMenuOpen: state.isBurgerMenuOpen,
   };
 };

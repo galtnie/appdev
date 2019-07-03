@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment } from "react";
 import {
   withStyles,
   withWidth,
@@ -27,89 +27,113 @@ const classes = {
   },
 };
 
-const UpperBar = ({ appBarOptions, classes, width }) => {
-  const [backgroundColor, setBackgroundColor] = useState("transparent");
+class UpperBar extends React.Component {
+  state = {
+    backgroundColor: "transparent",
+  };
 
-  const listenScrollEvent = e => {
+  listenScrollEvent = e => {
     if (window.scrollY > 0) {
-      setBackgroundColor("rgba(103, 58, 183, 0.7)");
+      this.setState({ backgroundColor: "rgba(103, 58, 183, 0.7)" });
     } else {
-      setBackgroundColor("transparent");
+      this.setState({ backgroundColor: "transparent" });
     }
   };
 
-  useEffect(() => {
-    if (width === "sm" || width === "xs") {
-      setBackgroundColor("rgba(103, 58, 183, 0.7)");
+  componentDidMount() {
+    if (this.props.width === "sm" || this.props.width === "xs") {
+      this.setState({ backgroundColor: "rgba(103, 58, 183, 0.7)" });
     } else if (window.scrollY === 0) {
-      setBackgroundColor("transparent");
-      window.addEventListener("scroll", listenScrollEvent);
+      this.setState({ backgroundColor: "transparent" });
+      window.addEventListener("scroll", this.listenScrollEvent);
     } else {
-      window.addEventListener("scroll", listenScrollEvent);
+      window.addEventListener("scroll", this.listenScrollEvent);
     }
-  }, [width]);
+  }
 
-  return (
-    <AppBar
-      position="fixed"
-      className={classes.root}
-      style={{
-        backgroundColor: backgroundColor,
-      }}
-    >
-      <Grid container direction="row" justify="center" alignItems="center">
-        <Grid item md={8} xs={10}>
-          <Toolbar className={classes.bar}>
-            <Typography variant="h6" className={classes.title}>
-              <StyledLink main="true" exact to="/">
-                AppDev
-              </StyledLink>
-            </Typography>
+  componentDidUpdate(prevProps) {
+    if (prevProps.width !== this.props.width) {
+      if (this.props.width === "sm" || this.props.width === "xs") {
+        this.setState({ backgroundColor: "rgba(103, 58, 183, 0.7)" });
+      } else if (window.scrollY === 0) {
+        this.setState({ backgroundColor: "transparent" });
+        window.addEventListener("scroll", this.listenScrollEvent);
+      } else {
+        window.addEventListener("scroll", this.listenScrollEvent);
+      }
+    }
+  }
 
-            {appBarOptions && (
-              <Fragment>
-                <Hidden xsDown>
-                  <UpperBarList>
-                    {appBarOptions.map((listItem, index) => {
-                      const link =
-                        listItem !== "Contact us"
-                          ? listItem.toLowerCase()
-                          : "contacts";
-                      return (
-                        <UpperBarItem
-                          key={listItem}
-                          last={appBarOptions.length === index + 1}
-                        >
-                          <StyledLink
-                            exact
-                            activeClassName="selectedLink"
-                            to={`/${link}`}
+  render() {
+    const { classes, navigationOptions } = this.props;
+
+    return (
+      <AppBar
+        position="fixed"
+        className={classes.root}
+        style={{
+          backgroundColor: this.state.backgroundColor,
+        }}
+      >
+        <Grid container direction="row" justify="center" alignItems="center">
+          <Grid item md={8} xs={10}>
+            <Toolbar className={classes.bar}>
+              <Typography variant="h6" className={classes.title}>
+                <StyledLink main="true" exact to="/">
+                  AppDev
+                </StyledLink>
+              </Typography>
+
+              {navigationOptions && (
+                <Fragment>
+                  <Hidden xsDown>
+                    <UpperBarList>
+                      {navigationOptions.map((listItem, index) => {
+                        const option =
+                          typeof listItem === "string" ? listItem : listItem[0];
+                        const link =
+                          option !== "Contact us"
+                            ? option.toLowerCase()
+                            : "contacts";
+
+                        return (
+                          <UpperBarItem
+                            key={option}
+                            last={navigationOptions.length === index + 1}
                           >
-                            {listItem}
-                          </StyledLink>
-                        </UpperBarItem>
-                      );
-                    })}
-                  </UpperBarList>
-                </Hidden>
-                <Hidden smUp>
-                  <BurgerButton />
-                </Hidden>
-              </Fragment>
-            )}
-          </Toolbar>
-          <Hidden smUp>
-            <BurgerMenu />
-          </Hidden>
+                            <StyledLink
+                              exact
+                              activeClassName="selectedLink"
+                              to={`/${link}`}
+                            >
+                              {option}
+                            </StyledLink>
+                          </UpperBarItem>
+                        );
+                      })}
+                    </UpperBarList>
+                  </Hidden>
+                  <Hidden smUp>
+                    <BurgerButton />
+                  </Hidden>
+                </Fragment>
+              )}
+            </Toolbar>
+            <Hidden smUp>
+              <BurgerMenu />
+            </Hidden>
+          </Grid>
         </Grid>
-      </Grid>
-    </AppBar>
-  );
-};
+      </AppBar>
+    );
+  }
+}
+
+//   const renderNavigationOptions =
 
 const mapStateToProps = state => {
   return {
-    appBarOptions: state.appBarOptions,
+    navigationOptions: state.navigationOptions,
   };
 };
 

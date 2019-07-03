@@ -12,7 +12,6 @@ import {
 import Button from "@material-ui/core/Button";
 
 const classes = theme => {
-  console.log(theme.palette.primary.main);
   return {
     button: {
       marginTop: "1rem",
