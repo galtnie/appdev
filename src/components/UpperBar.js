@@ -4,7 +4,6 @@ import {
   withWidth,
   AppBar,
   Toolbar,
-  Typography,
   Grid,
   Hidden,
 } from "@material-ui/core/";
@@ -12,6 +11,7 @@ import { connect } from "react-redux";
 import { UpperBarList, UpperBarItem, StyledLink } from "../styles";
 import BurgerButton from "./UpperBarBurgerButton";
 import BurgerMenu from "./UpperBarBurgerMenu";
+import Logo from "./Logo";
 
 const classes = {
   root: {
@@ -78,12 +78,9 @@ class UpperBar extends React.Component {
         <Grid container direction="row" justify="center" alignItems="center">
           <Grid item md={8} xs={10}>
             <Toolbar className={classes.bar}>
-              <Typography variant="h6" className={classes.title}>
-                <StyledLink main="true" exact to="/">
-                  AppDev
-                </StyledLink>
-              </Typography>
-
+              <div className={classes.title}>
+                <Logo />
+              </div>
               {navigationOptions && (
                 <Fragment>
                   <Hidden xsDown>
@@ -128,8 +125,6 @@ class UpperBar extends React.Component {
     );
   }
 }
-
-//   const renderNavigationOptions =
 
 const mapStateToProps = state => {
   return {

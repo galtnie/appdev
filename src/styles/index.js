@@ -26,7 +26,7 @@ export const MainPageDiv = styled.div`
 
 export const StyledLink = styled(NavLink)`
   text-decoration: none;
-  color: white;
+  color: ${props => (props.footer ? "grey" : "white")};
   padding-bottom: 0.1rem;
 
   &:focus,
@@ -37,7 +37,7 @@ export const StyledLink = styled(NavLink)`
     text-decoration: none;
   }
   &.selectedLink {
-    border-bottom: 0.1em solid white;
+    border-bottom: ${props => (props.footer ? "none" : "0.1em solid white")};
   }
 `;
 
@@ -310,3 +310,66 @@ export const TechsUsedImageContainer = styled.div`
   background-size: auto 100%;
   background-position: center;
 `;
+
+export const FooterExternalLinksContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1%;
+`;
+
+// @media (max-width: 650px) {
+//   flex-direction: column;
+// }
+
+export const FooterExternalLinkWrapper = styled.div`
+  margin-top: 2%;
+  margin-right: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  transition: margin-top 0.2s;
+  &:hover {
+    margin-top: 0%;
+  }
+`;
+
+export const FooterColumnLink = styled(Link)`
+  text-decoration: none;
+  color: grey;
+  &:active: {
+    text-decoration: none;
+  }
+  &:focus: {
+    text-decoration: none;
+  }
+  &:link: {
+    text-decoration: none;
+  }
+  &:visited: {
+    text-decoration: none;
+  }
+  &:hover: {
+    text-decoration: none;
+  }
+`;
+
+export const FooterImageWrapper = styled.div`
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  background-color: grey;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+`;
+//color: white;
+// background-color: grey;

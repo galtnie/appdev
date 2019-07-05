@@ -12,6 +12,7 @@ import {
   CssBaseline,
 } from "@material-ui/core";
 import { indigo, blue } from "@material-ui/core/colors";
+import "font-awesome/css/font-awesome.min.css";
 
 const theme = createMuiTheme({
   palette: {

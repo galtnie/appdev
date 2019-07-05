@@ -33,18 +33,20 @@ class ContactForm extends Component {
         // justify="space-around"
         alignItems="center"
       >
-        <Grid item lg={8} md={9} xs={10}>
+        <Grid item md={2} sm={1} />
+        <Grid item md={8} xs={10}>
           <Typography variant="h4" align="center" style={{ marginTop: "1rem" }}>
             GOT PROJECT IN MIND?
           </Typography>
         </Grid>
+        <Grid item md={2} sm={1} />
 
         <ContactFormForm>
-          <Hidden xsDown lgUp>
+          <Hidden xsDown>
             <Grid item md={2} sm={1} />
           </Hidden>
 
-          <Grid item lg={3} md={3} sm={4} xs={10} className={classes.nameInput}>
+          <Grid item md={3} sm={4} xs={10} className={classes.nameInput}>
             <ContactFormControl>
               <InputLabel htmlFor="component-simple">Your Name</InputLabel>
               <Input
@@ -57,18 +59,11 @@ class ContactForm extends Component {
             </ContactFormControl>
           </Grid>
 
-          <Hidden xsDown lgUp>
+          <Hidden xsDown>
             <Grid item md={2} sm={2} />
           </Hidden>
 
-          <Grid
-            item
-            lg={3}
-            md={3}
-            sm={4}
-            xs={10}
-            className={classes.emailInput}
-          >
+          <Grid item md={3} sm={4} xs={10} className={classes.emailInput}>
             <ContactFormControl>
               <InputLabel htmlFor="component-simple">Your Email</InputLabel>
               <Input
@@ -80,11 +75,10 @@ class ContactForm extends Component {
               />
             </ContactFormControl>
           </Grid>
-          <Hidden xsDown lgUp>
+          <Hidden xsDown>
             <Grid item md={2} sm={1} />
           </Hidden>
-
-          <Grid item lg={8} md={8} xs={10}>
+          <Grid item md={8} xs={10}>
             <ContactFormTextField
               id="standard-multiline-static"
               label="Message or question"
