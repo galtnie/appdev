@@ -8,7 +8,7 @@ class Portfolio extends React.Component {
     return (
       <MainPageDiv>
         <FirstColorfulContainer>
-          <ResponsiveColumnContainer>
+          <ResponsiveColumnContainer style={{ marginTop: "10rem" }}>
             Portfolio page
             <FakeText />
           </ResponsiveColumnContainer>

@@ -9,7 +9,7 @@ import Blog from "../pages/Blog";
 import Contacts from "../pages/Contacts";
 import UpperBar from "./UpperBar";
 import { StyledMain } from "../styles";
-import Footer from "./Footer";
+// import Footer from "./Footer";
 
 function App() {
   return (
@@ -22,8 +22,9 @@ function App() {
       <Route path="/company" exact component={Company} />
       <Route path="/blog" exact component={Blog} />
       <Route path="/contacts" exact component={Contacts} />
-      <Route path="/" component={Footer} />
     </StyledMain>
   );
 }
 export default App;
+
+// <Route path="/" component={Footer} />;

@@ -7,11 +7,22 @@ class Logo extends React.Component {
   render() {
     const { logo, footer } = this.props;
     return (
-      <Typography variant="h6">
-        <StyledLink footer={footer ? 1 : 0} main="true" exact to="/">
+      <StyledLink footer={footer ? 1 : 0} main="true" exact to="/">
+        <Typography
+          variant="h5"
+          style={
+            footer
+              ? {
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }
+              : null
+          }
+        >
           {logo}
-        </StyledLink>
-      </Typography>
+        </Typography>
+      </StyledLink>
     );
   }
 }

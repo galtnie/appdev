@@ -9,7 +9,7 @@ class Contacts extends React.Component {
     return (
       <MainPageDiv>
         <FirstColorfulContainer>
-          <ResponsiveColumnContainer>
+          <ResponsiveColumnContainer style={{ marginTop: "10rem" }}>
             Contacts
             <FakeText />
           </ResponsiveColumnContainer>
@@ -21,5 +21,3 @@ class Contacts extends React.Component {
 }
 
 export default Contacts;
-
-//  <ContactForm />;

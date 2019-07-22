@@ -1,9 +1,7 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
-import FormControl from "@material-ui/core/FormControl";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
+import { FormControl, TextField, Button, Grid } from "@material-ui/core";
 import React from "react";
 
 export const StyledMain = styled.main`
@@ -21,8 +19,6 @@ export const MainPageDiv = styled.div`
   padding: 0;
   margin: 0;
 `;
-
-//  UpperBar component & UpperBarBurgerMenu Component
 
 export const StyledLink = styled(NavLink)`
   text-decoration: none;
@@ -95,7 +91,8 @@ export const BurgerMenuItem = styled.div`
 export const BurgerMenuList = styled.div`
   height: 91vh;
   width: 100vw;
-  background: rgba(103, 58, 183, 0.7);
+  background: ${({ background }) =>
+    background !== "transparent" ? background : "rgba(103, 58, 183, 0.7)"};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -182,23 +179,8 @@ export const BurgerStyledLink = styled(Link)`
   color: white;
 `;
 
-// something else
-// something else
-// something else
-// something else
-// something else
-// something else
-// something else
-
 export const FirstColorfulContainer = styled.div`
-  background-image: linear-gradient(
-    to left top,
-    #051937,
-    #002c60,
-    #003f8c,
-    #0053bb,
-    #1267eb
-  );
+  background-image: linear-gradient(to left top, #673ab7, #3d5afe);
   height: 100vh;
   max-height: 200vh;
   height: 100vh;
@@ -207,20 +189,7 @@ export const FirstColorfulContainer = styled.div`
   max-width: 100%;
   min-width: 100%;
   color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 `;
-
-// export const ContactFormWrapper = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-//   margin-top: 5rem;
-//   margin-bottom: 5rem;
-// `;
 
 export const ContactFormForm = styled.form`
   width: 100%;
@@ -235,7 +204,6 @@ export const ContactFormControl = styled(FormControl)`
   margin-top: 1rem !important;
   width: 100%;
 `;
-// min-width: 40% !important;
 
 export const ContactFormTextField = styled(TextField)`
   margin-top: 1rem !important;
@@ -264,8 +232,6 @@ export const ContactFormButton = styled(Button)`
 `;
 
 export const TechsUsedContainer = styled.div`
-  height: 100%;
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -277,17 +243,19 @@ export const TechsUsedParagraph = styled.p`
   font-color: grey;
 `;
 
-export const TechsUsedList = styled.ul`
+export const TechsUsedList = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
   margin: 0;
   padding: 0;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  height: 26rem;
+  width: 100%;
 `;
 
-export const TechsUsedListItem = styled.li`
+export const TechsUsedListItem = styled.div`
   width: 15rem;
   height: 11rem;
   list-style: none;
@@ -312,16 +280,14 @@ export const TechsUsedImageContainer = styled.div`
 `;
 
 export const FooterExternalLinksContainer = styled.div`
+  width: ${({ smalldevice }) => (smalldevice ? "100%" : "auto")};
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  margin-top: 1%;
+  justify-content: ${({ smalldevice }) =>
+    smalldevice ? "space-between" : "center"};
+  margin-top: ${({ smalldevice }) => (smalldevice ? "2rem" : "1%")};
 `;
-
-// @media (max-width: 650px) {
-//   flex-direction: column;
-// }
 
 export const FooterExternalLinkWrapper = styled.div`
   margin-top: 2%;
@@ -371,5 +337,201 @@ export const FooterImageWrapper = styled.div`
   align-items: center;
   justify-content: center;
 `;
-//color: white;
-// background-color: grey;
+
+const animateArrow = keyframes`
+0% {
+    stroke-dashoffset: 100;
+    transform: translate(0, 0);
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  20% {
+    stroke-dashoffset: 0;
+  }
+  40% {
+    stroke-dashoffset: 0;
+    transform: translate(0, 15%);
+    opacity: 1;
+  }
+  80% {
+     stroke-dashoffset: 0;
+    transform: translate(0, 30%);
+    opacity: 1;
+  }
+  100% {
+     stroke-dashoffset: 0;
+    transform: translate(0, 30%);
+    opacity: 0;
+  }
+`;
+
+export const AnimatedPolyline = styled.polyline`
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.5);
+  stroke-width: 2;
+  animation-name: ${animateArrow};
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  margin-top: 2rem;
+`;
+
+const appearScrollDiv = keyframes`
+   0% { opacity: 0; }
+    40% { opacity: 0; }
+     80% {opacity: 1;}
+    100% {opacity: 0;}
+`;
+
+export const AnimatedScrollDiv = styled.div`
+  animation-name: ${appearScrollDiv};
+
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-fill-mode: backwards;
+`;
+
+export const HomeColorfulContainerImage = styled.img`
+  position: ${({ smallDevice }) => (smallDevice ? "static" : "absolute")};
+  width: 100%;
+  top: ${({ smallDevice }) => (smallDevice ? 0 : "5rem")};
+`;
+
+export const HomeColorfulContainerBottom = styled.div`
+  position: absolute;
+  width: 20%;
+  height: 15%;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const HomeSecondContainer = styled.div`
+  width: 100%;
+
+  z-index: ${({ smalldevice }) => (smalldevice ? 1 : 3)};
+  margin-top: ${({ smalldevice }) => (smalldevice ? 0 : "100vh")};
+  margin-bottom: ${({ smalldevice }) => (smalldevice ? 0 : "100vh")};
+  position: ${({ smalldevice }) => (smalldevice ? "static" : "absolute")};
+  display: flex;
+  flex-direction: column;
+`;
+
+export const HomeSecondContainerInnerGrid = styled(Grid)`
+  height: ${({ smalldevice, text }) =>
+    smalldevice ? (text ? "auto" : "30rem") : "33rem"};
+  margin-bottom: 2rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding-left: ${({ smalldevice, side }) =>
+    smalldevice ? 0 : side === "left" ? "5rem" : 0};
+  padding-right: ${({ smalldevice, side }) =>
+    smalldevice ? 0 : side === "right" ? "5rem" : 0};
+`;
+
+// export const HomeSecondContainerInnerGridLeft = styled(
+//   HomeSecondContainerInnerGrid
+// )`
+//   padding-left: ${({ smalldevice }) => (smalldevice ? 0 : "5rem")};
+// `;
+
+// export const HomeSecondContainerInnerGridRight = styled(
+//   HomeSecondContainerInnerGrid
+// )`
+//   padding-right: ${({ smalldevice }) => (smalldevice ? 0 : "5rem")};
+// `;
+
+const slideIn = keyframes`
+   0% { opacity: 0; 
+     margin-top: 10rem;
+
+}
+    100% {opacity: 1; 
+   margin-top: 0rem;    
+
+  }
+`;
+const slideOut = keyframes`
+   0% { opacity: 1; 
+margin-top: 0rem;
+
+}
+    100% {opacity: 0; 
+ margin-top: 10rem;
+
+  }
+`;
+
+export const HomeSlideAppearContainer = styled.div`
+  animation-delay: ${({ turn }) => (turn ? turn * 0.4 : 0)}s;
+  animation-name: ${({ smalldevice, trigger }) =>
+    smalldevice ? "none" : trigger ? slideIn : slideOut};
+  animation-duration: 0.4s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  opacity: ${({ smalldevice }) => (smalldevice ? 1 : 0)};
+  margin-top: ${({ smalldevice }) => (smalldevice ? 0 : "10rem")};
+`;
+
+export const HomeSecondContainerImageDiv = styled.div`
+  width: ${({ smalldevice }) => (smalldevice ? "100%" : "35rem")};
+  height: ${({ smalldevice }) => (smalldevice ? "23rem" : "35rem")};
+  background-repeat: no-repeat;
+`;
+
+export const CenteredGrid = styled(Grid)`
+  display: flex;
+  justify-content: center;
+  align-items: ${({ smalldevice }) => (smalldevice ? "center" : "flex-start")};
+  flew-wrap: wrap;
+  align-content: ${({ smalldevice }) =>
+    smalldevice ? "center" : "flex-start"};
+  height: ${({ height }) => height};
+`;
+
+export const PartnerLogoContainer = styled.div`
+  height: 6rem;
+  width: 8rem;
+  background-image: url(${({ image }) => image});
+  background-size: ${({ size }) => size}rem;
+  background-position: ${({ position }) => position};
+  background-repeat: no-repeat;
+  overflow: hidden;
+  cursor: pointer;
+  margin: ${({ smalldevice }) => (smalldevice ? 0 : "1rem")};
+`;
+
+export const HomeThirdContainer = styled.div`
+  width: 100%;
+  height: ${({ smalldevice }) => (smalldevice ? "auto" : "100vh")};
+  background-color: white;
+  padding-bottom: ${({ smalldevice }) => (smalldevice ? "5rem" : 0)};
+`;
+
+export const SideTextButton = styled(Button)`
+  margin-top: 1rem !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  text-transform: none !important;
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+`;
+
+export const SideTextButtonWithChangedStyles = styled(SideTextButton)`
+  color: white !important;
+  border: 2px solid white  !important;
+ border-radius: 0.5rem  !important;
+
+  &:hover {
+    color: ${({ navbarcolor }) => navbarcolor}  !important;
+    background-color: white  !important;
+    },
+`;

@@ -55,7 +55,11 @@ class BurgerMenu extends React.Component {
         timeout={{ enter: 500, exit: 300 }}
         unmountOnExit={true}
       >
-        <BurgerMenuList>{this.composeMenuItems()}</BurgerMenuList>
+        <BurgerMenuList
+          background={this.props.currentStylesSubjectToScroll.navbarColor}
+        >
+          {this.composeMenuItems()}
+        </BurgerMenuList>
       </Collapse>
     );
   };
@@ -77,6 +81,7 @@ const mapStateToProps = state => {
   return {
     navigationOptions: state.navigationOptions,
     isBurgerMenuOpen: state.isBurgerMenuOpen,
+    currentStylesSubjectToScroll: state.currentStylesSubjectToScroll,
   };
 };
 

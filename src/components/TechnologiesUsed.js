@@ -1,69 +1,138 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { withStyles, Typography } from "@material-ui/core/";
-import {
-  TechsUsedContainer,
-  TechsUsedParagraph,
-  TechsUsedList,
-  TechsUsedListItem,
-  TechsUsedImageContainer,
-} from "../styles";
-import Button from "@material-ui/core/Button";
+import { withWidth, withStyles, Grid } from "@material-ui/core/";
+import { renderEmptyColumns } from "../functions";
+import AnimatedMiddleText from "./AnimatedMiddleText.js";
+import TechUsedCard from "./TechsUsedCard.js";
+import TechsUsedButton from "./TechsUsedButton.js";
 
 const classes = theme => {
   return {
-    button: {
-      marginTop: "1rem",
-      borderWidth: "2px",
-      borderStyle: "solid",
-      borderRadius: "0.5rem",
-      fontWeight: "bold",
-      "&:hover": {
-        borderColor: theme.palette.primary.main,
-        color: "white",
-        backgroundColor: theme.palette.primary.main,
-      },
-      "&:active": {
-        borderColor: theme.palette.primary.main,
-        color: "white",
-        backgroundColor: theme.palette.primary.main,
+    middleGrid: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      marginBottom: "2rem",
+      [theme.breakpoints.up("md")]: {
+        height: "12rem",
       },
     },
-    link: { textDecoration: "none" },
+    techsIconsMiddleGrid: {
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "flex-start",
+      justifyContent: "center",
+      flexWrap: "wrap",
+      alignContent: "flex-start",
+      [theme.breakpoints.up("md")]: {
+        height: "29rem",
+      },
+    },
   };
 };
 
-const TechnologiesUsed = ({ usedTechnologies, classes }) => {
-  return (
-    <TechsUsedContainer>
-      <Typography variant="h4" align="center" style={{ marginTop: "1rem" }}>
-        TECHNOLOGIES WE USE
-      </Typography>
-      <TechsUsedParagraph>
-        We focus on modern and already proven technologies that bring benefits
-        for projects we create.
-      </TechsUsedParagraph>
-      <TechsUsedList>
-        {usedTechnologies
-          ? usedTechnologies.map(technology => {
-              return (
-                <TechsUsedListItem key={technology.name}>
-                  <TechsUsedImageContainer logo={technology.logo} />
-                  <p>{` ${technology.name} Development`}</p>
-                </TechsUsedListItem>
-              );
-            })
-          : null}
-      </TechsUsedList>
-      <Link to={`/portfolio`} className={classes.link}>
-        <Button className={classes.button} color="primary">
-          <Typography variant="button">See our portfolio</Typography>
-        </Button>
-      </Link>
-    </TechsUsedContainer>
-  );
-};
+class TechnologiesUsed extends React.Component {
+  state = {
+    container: null,
+    slideIn: false,
+  };
+
+  refCallback = element => {
+    if (element) {
+      this.setState({ container: element });
+    }
+  };
+
+  componentDidMount() {
+    if (this.state.container !== null) {
+      window.addEventListener("scroll", () => {
+        if (
+          this.state.container.getBoundingClientRect().top < window.innerHeight
+        ) {
+          this.setState({ slideIn: true });
+        } else if (
+          this.state.container.getBoundingClientRect().top > window.innerHeight
+        ) {
+          this.setState({ slideIn: false });
+        }
+      });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.container !== this.state.container) {
+      if (this.state.container !== null) {
+        window.addEventListener("scroll", () => {
+          if (
+            this.state.container.getBoundingClientRect().top <
+            window.innerHeight
+          ) {
+            this.setState({
+              slideIn: true,
+            });
+          } else if (
+            this.state.container.getBoundingClientRect().top >
+            window.innerHeight
+          ) {
+            this.setState({
+              slideIn: false,
+            });
+          }
+        });
+      }
+    }
+  }
+
+  render() {
+    const { width, usedTechnologies, classes } = this.props;
+    const smallDevice = width === "sm" || width === "xs";
+
+    return (
+      <Fragment>
+        {renderEmptyColumns(3)}
+
+        <Grid
+          item
+          md={6}
+          xs={10}
+          className={classes.middleGrid}
+          style={{ marginTop: smallDevice ? "4rem" : "5rem" }}
+        >
+          <AnimatedMiddleText title={true} smallDevice={smallDevice}>
+            {usedTechnologies.description.title}
+          </AnimatedMiddleText>
+          <AnimatedMiddleText title={false} smallDevice={smallDevice}>
+            {usedTechnologies.description.text}
+          </AnimatedMiddleText>
+        </Grid>
+        {renderEmptyColumns(3)}
+        {renderEmptyColumns(2)}
+        <Grid item md={8} xs={10} ref={this.refCallback}>
+          <div className={classes.techsIconsMiddleGrid}>
+            {usedTechnologies
+              ? usedTechnologies.list.map((technology, index) => {
+                  return (
+                    <TechUsedCard
+                      logo={technology.logo}
+                      name={technology.name}
+                      trigger={this.state.slideIn}
+                      turn={index}
+                      key={technology.name}
+                      style={{ width: "33%" }}
+                      smallDevice={smallDevice}
+                    />
+                  );
+                })
+              : null}
+          </div>
+        </Grid>
+        {renderEmptyColumns(2)}
+        <TechsUsedButton smallDevice={smallDevice} />
+      </Fragment>
+    );
+  }
+}
 
 const mapStateToProps = state => {
   return {
@@ -71,4 +140,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(withStyles(classes)(TechnologiesUsed));
+export default connect(mapStateToProps)(
+  withWidth()(withStyles(classes)(TechnologiesUsed))
+);

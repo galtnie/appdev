@@ -6,12 +6,14 @@ import {
   Toolbar,
   Grid,
   Hidden,
+  Typography,
 } from "@material-ui/core/";
 import { connect } from "react-redux";
 import { UpperBarList, UpperBarItem, StyledLink } from "../styles";
 import BurgerButton from "./UpperBarBurgerButton";
 import BurgerMenu from "./UpperBarBurgerMenu";
 import Logo from "./Logo";
+import { changeStylesOnScroll } from "../actions";
 
 const classes = {
   root: {
@@ -29,22 +31,39 @@ const classes = {
 
 class UpperBar extends React.Component {
   state = {
-    backgroundColor: "transparent",
+    transparentNavbarStyles: {
+      navbarColor: "transparent",
+      backgroundColor: "white",
+      fontColor: "black",
+    },
+    defaultStyles: {
+      navbarColor: "rgba(103, 58, 183, 0.7)",
+      backgroundColor: "white",
+      fontColor: "black",
+    },
   };
 
   listenScrollEvent = e => {
-    if (window.scrollY > 0) {
-      this.setState({ backgroundColor: "rgba(103, 58, 183, 0.7)" });
-    } else {
-      this.setState({ backgroundColor: "transparent" });
+    if (
+      window.scrollY > 0 &&
+      this.props.currentStylesSubjectToScroll.navbarColor === "transparent"
+    ) {
+      this.props.changeStylesOnScroll(this.state.defaultStyles);
+    } else if (window.scrollY === 0) {
+      this.props.changeStylesOnScroll(this.state.transparentNavbarStyles);
     }
   };
 
   componentDidMount() {
-    if (this.props.width === "sm" || this.props.width === "xs") {
-      this.setState({ backgroundColor: "rgba(103, 58, 183, 0.7)" });
+    if (
+      (this.props.width === "sm" || this.props.width === "xs") &&
+      window.scrollY < window.innerHeight &&
+      this.props.currentStylesSubjectToScroll.navbarColor !==
+        this.state.defaultStyles.navbarColor
+    ) {
+      this.props.changeStylesOnScroll(this.state.defaultStyles);
     } else if (window.scrollY === 0) {
-      this.setState({ backgroundColor: "transparent" });
+      this.props.changeStylesOnScroll(this.state.transparentNavbarStyles);
       window.addEventListener("scroll", this.listenScrollEvent);
     } else {
       window.addEventListener("scroll", this.listenScrollEvent);
@@ -53,10 +72,13 @@ class UpperBar extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.width !== this.props.width) {
-      if (this.props.width === "sm" || this.props.width === "xs") {
-        this.setState({ backgroundColor: "rgba(103, 58, 183, 0.7)" });
+      if (
+        (this.props.width === "sm" || this.props.width === "xs") &&
+        window.scrollY < window.innerHeight
+      ) {
+        this.props.changeStylesOnScroll(this.state.defaultStyles);
       } else if (window.scrollY === 0) {
-        this.setState({ backgroundColor: "transparent" });
+        this.props.changeStylesOnScroll(this.state.transparentNavbarStyles);
         window.addEventListener("scroll", this.listenScrollEvent);
       } else {
         window.addEventListener("scroll", this.listenScrollEvent);
@@ -65,18 +87,28 @@ class UpperBar extends React.Component {
   }
 
   render() {
-    const { classes, navigationOptions } = this.props;
+    const {
+      currentStylesSubjectToScroll,
+      classes,
+      navigationOptions,
+      width,
+    } = this.props;
 
     return (
       <AppBar
         position="fixed"
         className={classes.root}
         style={{
-          backgroundColor: this.state.backgroundColor,
+          backgroundColor:
+            currentStylesSubjectToScroll.navbarColor ===
+              this.state.transparentNavbarStyles.navbarColor &&
+            (width === "sm" || width === "xs")
+              ? this.state.defaultStyles.navbarColor
+              : currentStylesSubjectToScroll.navbarColor,
         }}
       >
         <Grid container direction="row" justify="center" alignItems="center">
-          <Grid item md={8} xs={10}>
+          <Grid item xs={10}>
             <Toolbar className={classes.bar}>
               <div className={classes.title}>
                 <Logo />
@@ -103,7 +135,7 @@ class UpperBar extends React.Component {
                               activeClassName="selectedLink"
                               to={`/${link}`}
                             >
-                              {option}
+                              <Typography variant="h6">{option}</Typography>
                             </StyledLink>
                           </UpperBarItem>
                         );
@@ -129,9 +161,11 @@ class UpperBar extends React.Component {
 const mapStateToProps = state => {
   return {
     navigationOptions: state.navigationOptions,
+    currentStylesSubjectToScroll: state.currentStylesSubjectToScroll,
   };
 };
 
-export default connect(mapStateToProps)(
-  withWidth()(withStyles(classes)(UpperBar))
-);
+export default connect(
+  mapStateToProps,
+  { changeStylesOnScroll }
+)(withWidth()(withStyles(classes)(UpperBar)));

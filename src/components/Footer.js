@@ -9,82 +9,94 @@ import {
   FooterImageWrapper,
 } from "../styles";
 
-const classes = {
-  upperLine: {
-    marginTop: "2rem",
-    borderTop: "1px solid grey",
-  },
-  columnLink: {
-    textDecoration: "none",
-    color: "grey",
-    "&:visited": {
+const classes = theme => {
+  return {
+    upperLine: {
+      marginTop: "2rem",
+      marginBottom: "2rem",
+      borderTop: "1px solid grey",
+    },
+    columnLink: {
+      textDecoration: "none",
+      color: "grey",
+      "&:visited": {
+        textDecoration: "none",
+      },
+      "&:hover": {
+        textDecoration: "none",
+      },
+    },
+    companyInfo: {
+      marginTop: "1rem",
+      cursor: "default",
+      color: "grey",
+      // [theme.breakpoints.down("sm")]: {
+      //   display: "flex",
+      //   justifyContent: "center",
+      //   alignItems: "center",
+      // },
+    },
+    columnFirtItem: {
+      marginTop: "0.7rem",
+      marginBottom: "1rem",
       textDecoration: "none",
     },
-    "&:hover": {
+    columnItem: {
       textDecoration: "none",
     },
-  },
-  companyInfo: {
-    marginTop: "1rem",
-    cursor: "default",
-    color: "grey",
-  },
-  columnFirtItem: {
-    marginTop: "0.7rem",
-    marginBottom: "1rem",
-    textDecoration: "none",
-  },
-  columnItem: {
-    textDecoration: "none",
-  },
-  externalPaths: {
-    background: "none",
-  },
-  externalLinkImage: {
-    color: "white",
-    backgroundColor: "grey",
-    borderRadius: "50%",
-  },
-  githubImage: {
-    color: "white",
-    backgroundColor: "grey",
-    borderRadius: "50%",
-  },
+    externalPaths: {
+      background: "none",
+    },
+    externalLinkImage: {
+      color: "white",
+      backgroundColor: "grey",
+      borderRadius: "50%",
+    },
+    githubImage: {
+      color: "white",
+      backgroundColor: "grey",
+      borderRadius: "50%",
+    },
+  };
 };
 
-const FooterExternalLinks = withStyles(classes)(({ children, classes }) => {
-  return (
-    <FooterExternalLinksContainer>
-      {children.map(ref => {
-        return (
-          <FooterExternalLinkWrapper key={ref.name}>
-            {ref.name !== "github" ? (
-              <Link className={classes.columnLink} to={ref.path}>
-                <FooterImageWrapper>
-                  <i
-                    className={`${classes.externalLinkImage} fa fa-${
-                      ref.name
-                    } fa-1x`}
-                    aria-hidden="true"
-                  />
-                </FooterImageWrapper>
-              </Link>
-            ) : (
-              <Link className={classes.columnLink} to={ref.path}>
-                <FooterImageWrapper>
-                  <i
-                    className={`${classes.githubImage} fa fa-github fa-2x`}
-                    aria-hidden="true"
-                  />
-                </FooterImageWrapper>
-              </Link>
-            )}
-          </FooterExternalLinkWrapper>
-        );
-      })}
-    </FooterExternalLinksContainer>
-  );
-});
+const FooterExternalLinks = withWidth()(
+  withStyles(classes)(({ children, classes, width }) => {
+    const smallDevice = width !== "sm" && width !== "xs" ? false : true;
+
+    return (
+      <FooterExternalLinksContainer smalldevice={Number(smallDevice)}>
+        {children.map(ref => {
+          return (
+            <FooterExternalLinkWrapper key={ref.name}>
+              {ref.name !== "github" ? (
+                <Link className={classes.columnLink} to={ref.path}>
+                  <FooterImageWrapper>
+                    <i
+                      className={`${classes.externalLinkImage} fa fa-${
+                        ref.name
+                      } fa-1x`}
+                      aria-hidden="true"
+                    />
+                  </FooterImageWrapper>
+                </Link>
+              ) : (
+                <Link className={classes.columnLink} to={ref.path}>
+                  <FooterImageWrapper>
+                    <i
+                      className={`${classes.githubImage} fa fa-github fa-2x`}
+                      aria-hidden="true"
+                    />
+                  </FooterImageWrapper>
+                </Link>
+              )}
+            </FooterExternalLinkWrapper>
+          );
+        })}
+      </FooterExternalLinksContainer>
+    );
+  })
+);
 
 class Footer extends React.Component {
   renderLogo() {
@@ -172,6 +184,8 @@ class Footer extends React.Component {
           <Fragment>
             <Grid item xs={1} />
             {this.renderLogo()}
+            <Grid item xs={1} />
+            <Grid item xs={1} />
             {this.renderExternalLinks()}
             <Grid item xs={1} />
             {this.renderInternalLinks()}
