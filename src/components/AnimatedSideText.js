@@ -17,7 +17,7 @@ const classes = theme => {
       borderRadius: "0.5rem",
       "&:hover": {
         color: "white",
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: `${theme.palette.primary.main} !important`,
       },
     },
   };
