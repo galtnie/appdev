@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d4104793.chunk.css",
+    "main.js": "/static/js/main.3d83b473.chunk.js",
+    "main.js.map": "/static/js/main.3d83b473.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
+    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
+    "static/css/2.400f043a.chunk.css": "/static/css/2.400f043a.chunk.css",
+    "static/js/2.bd2a894b.chunk.js": "/static/js/2.bd2a894b.chunk.js",
+    "static/js/2.bd2a894b.chunk.js.map": "/static/js/2.bd2a894b.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.bc917070c8a0c9075ffeb8fd34996efc.js": "/precache-manifest.bc917070c8a0c9075ffeb8fd34996efc.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.400f043a.chunk.css.map": "/static/css/2.400f043a.chunk.css.map",
+    "static/css/main.d4104793.chunk.css.map": "/static/css/main.d4104793.chunk.css.map",
+    "static/media/angular.png": "/static/media/angular.b8ca0fce.png",
+    "static/media/clutch.svg": "/static/media/clutch.9e93c609.svg",
+    "static/media/dev_list_sprite.svg": "/static/media/dev_list_sprite.09e3dd71.svg",
+    "static/media/first_main_desktop.svg": "/static/media/first_main_desktop.47733146.svg",
+    "static/media/first_main_mobile.svg": "/static/media/first_main_mobile.9e36b972.svg",
+    "static/media/font-awesome.min.css": "/static/media/fontawesome-webfont.fee66e71.woff",
+    "static/media/goodfirms.png": "/static/media/goodfirms.e9c9bb2c.png",
+    "static/media/media_sprite_desktop.png": "/static/media/media_sprite_desktop.e45616c1.png",
+    "static/media/media_sprite_mobile.png": "/static/media/media_sprite_mobile.0ec2c5ce.png",
+    "static/media/node.png": "/static/media/node.166b3c40.png",
+    "static/media/nuxt.png": "/static/media/nuxt.c69c9970.png",
+    "static/media/react.png": "/static/media/react.47ce6e77.png",
+    "static/media/upwork.png": "/static/media/upwork.fd080775.png",
+    "static/media/vue.png": "/static/media/vue.7dfb4d8c.png",
+    "static/media/youteam.png": "/static/media/youteam.393ed84c.png"
+  }
+}
