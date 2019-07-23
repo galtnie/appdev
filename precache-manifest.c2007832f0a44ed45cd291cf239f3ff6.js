@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "118b5094ce670c5abf11f2f06cebeb80",
+    "revision": "2d7609902eba4474a3a45da008ab6eea",
     "url": "/appdev/index.html"
   },
   {
@@ -8,16 +8,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/appdev/static/css/2.5a28e973.chunk.css"
   },
   {
-    "revision": "98b5df156540ac5cb836",
-    "url": "/appdev/static/css/main.d4104793.chunk.css"
+    "revision": "f3c51a89e9262f94559a",
+    "url": "/appdev/static/css/main.d7fdb643.chunk.css"
   },
   {
     "revision": "f9e1ca01753c14bb1a00",
     "url": "/appdev/static/js/2.18c6d41e.chunk.js"
   },
   {
-    "revision": "98b5df156540ac5cb836",
-    "url": "/appdev/static/js/main.3ecb7815.chunk.js"
+    "revision": "f3c51a89e9262f94559a",
+    "url": "/appdev/static/js/main.3f14c13e.chunk.js"
   },
   {
     "revision": "87552620d77d0c3fb81d",
@@ -32,12 +32,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/appdev/static/media/clutch.9e93c609.svg"
   },
   {
-    "revision": "09e3dd7117765635d0413976cddde380",
-    "url": "/appdev/static/media/dev_list_sprite.09e3dd71.svg"
+    "revision": "96170c959852b14574b5f86b8f95b96d",
+    "url": "/appdev/static/media/dev_list_sprite.96170c95.svg"
   },
   {
-    "revision": "47733146ef3850979a42e5d47f707945",
-    "url": "/appdev/static/media/first_main_desktop.47733146.svg"
+    "revision": "4a64ca4ffd8ba1100b9239d7e194fe4a",
+    "url": "/appdev/static/media/first_main_desktop.4a64ca4f.svg"
   },
   {
     "revision": "9e36b97256aa0f5e208c6ad540ad5461",
